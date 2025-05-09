@@ -252,12 +252,15 @@ const Home = () =>{
                                             <td>{task.description}</td>
                                             <td>{task.status}</td>
                                             <td>{task.duedate.slice(0,10)}</td>
-                                            <td><button onClick={() => handleDelete(task._id)}>
+                                            <td>{isUpdate || (
+                                                <>
+                                                <button onClick={() => handleDelete(task._id)}>
                                                 <img className="w-[20px] h-[20px] mx-4" src={deleteIcon} alt="delete-icon"/>
                                                 </button>
+                                                </>)}     
                                             </td>
                                             <td>
-                                            { task.status!=="Completed" && (
+                                            { task.status!=="Completed" && !isUpdate &&(
                                                 <>
                                                 <button onClick={() => handleMarkCompleted(task._id)}>
                                                     <img className="w-[25px] h-[25px] mx-4" src={completedIcon} alt="completed-icon"/>
@@ -266,10 +269,13 @@ const Home = () =>{
                                                 )
                                             }
                                             </td>
-                                            <td>
+                                            <td>{isUpdate || (
+                                                <>
                                                 <button onClick={() => handleEdit(task._id)}>
                                                     <img src={editIcon} alt="edit-icon" className="w-[20px] h-[20px]"/>
                                                 </button>
+                                                </>
+                                                )} 
                                             </td>
                                         </tr>
                                     );
